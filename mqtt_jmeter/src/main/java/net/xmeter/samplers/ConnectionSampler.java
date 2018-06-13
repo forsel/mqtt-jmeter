@@ -65,6 +65,7 @@ public class ConnectionSampler extends AbstractMQTTSampler
 			}
 			
 			mqtt.setClientId(clientId);
+			mqtt.setCleanSession(isCleanSession());
 			mqtt.setConnectAttemptsMax(Integer.parseInt(getConnAttamptMax()));
 			mqtt.setReconnectAttemptsMax(Integer.parseInt(getConnReconnAttamptMax()));
 

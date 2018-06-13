@@ -33,6 +33,7 @@ public class PubSamplerUI extends AbstractSamplerGui implements Constants, Chang
 	private JLabeledChoice qosChoice;
 	private final JLabeledTextField topicName = new JLabeledTextField("Topic name:");
 	private JCheckBox timestamp = new JCheckBox("Add timestamp in payload");
+	private JCheckBox retained = new JCheckBox("Retained");
 
 	private JLabeledChoice messageTypes;
 	private final JSyntaxTextArea sendMessage = JSyntaxTextArea.getInstance(10, 50);
@@ -72,6 +73,7 @@ public class PubSamplerUI extends AbstractSamplerGui implements Constants, Chang
 		optsPanel.add(qosChoice);
 		optsPanel.add(topicName);
 		optsPanel.add(timestamp);
+		optsPanel.add(retained);
 		optsPanelCon.add(optsPanel);
 
 		return optsPanelCon;
@@ -146,6 +148,7 @@ public class PubSamplerUI extends AbstractSamplerGui implements Constants, Chang
 		
 		this.topicName.setText(sampler.getTopic());
 		this.timestamp.setSelected(sampler.isAddTimestamp());
+		this.retained.setSelected(sampler.isRetained());
 		if(MESSAGE_TYPE_STRING.equalsIgnoreCase(sampler.getMessageType())) {
 			this.messageTypes.setSelectedIndex(0);	
 			this.messagePanel.setVisible(true);
@@ -188,6 +191,7 @@ public class PubSamplerUI extends AbstractSamplerGui implements Constants, Chang
 		}
 		
 		sampler.setAddTimestamp(this.timestamp.isSelected());
+		sampler.setRetained(this.retained.isSelected());
 		sampler.setMessageType(this.messageTypes.getText());
 		sampler.setMessageLength(this.stringLength.getText());
 		sampler.setMessage(this.sendMessage.getText());

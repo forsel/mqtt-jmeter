@@ -123,6 +123,14 @@ public abstract class AbstractMQTTSampler extends AbstractSampler implements Con
 		setProperty(CONN_CLIENT_ID_SUFFIX, clientIdSuffix);
 	}
 
+	public boolean isCleanSession() {
+		return getPropertyAsBoolean(CONN_CLEAN_SESSION, DEFAULT_CLEAN_SESSION);
+	}
+	
+	public void setCleanSession(boolean cleanSession) {
+		setProperty(CONN_CLEAN_SESSION, cleanSession);
+	}
+
 	public String getConnKeepTime() {
 		return getPropertyAsString(CONN_KEEP_TIME, DEFAULT_CONN_KEEP_TIME);
 	}

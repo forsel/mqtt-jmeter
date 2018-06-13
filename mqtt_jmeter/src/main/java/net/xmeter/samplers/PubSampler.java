@@ -49,11 +49,19 @@ public class PubSampler extends AbstractMQTTSampler implements ThreadListener {
 	}
 
 	public boolean isAddTimestamp() {
-		return getPropertyAsBoolean(ADD_TIMESTAMP);
+		return getPropertyAsBoolean(ADD_TIMESTAMP, DEFAULT_ADD_TIMESTAMP);
 	}
 
 	public void setAddTimestamp(boolean addTimestamp) {
 		setProperty(ADD_TIMESTAMP, addTimestamp);
+	}
+
+	public boolean isRetained() {
+		return getPropertyAsBoolean(RETAINED, DEFAULT_RETAINED);
+	}
+
+	public void setRetained(boolean retained) {
+		setProperty(RETAINED, retained);
 	}
 
 	public String getMessageType() {
@@ -214,10 +222,10 @@ public class PubSampler extends AbstractMQTTSampler implements ThreadListener {
 			if(qos_enum == QoS.AT_MOST_ONCE) { 
 				//For QoS == 0, the callback is the same thread with sampler thread, so it cannot use the lock object wait() & notify() in else block;
 				//Otherwise the sampler thread will be blocked.
-				connection.publish(topicName, toSend, qos_enum, false, pubCallback);
+				connection.publish(topicName, toSend, qos_enum, isRetained(), pubCallback);
 			} else {
 				synchronized (connLock) {
-					connection.publish(topicName, toSend, qos_enum, false, pubCallback);
+					connection.publish(topicName, toSend, qos_enum, isRetained(), pubCallback);
 					connLock.wait();
 				}
 			}

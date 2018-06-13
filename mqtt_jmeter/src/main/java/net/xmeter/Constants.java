@@ -19,6 +19,7 @@ public interface Constants {
 	public static final String CONN_KEEP_TIME = "mqtt.keep_time";
 	public static final String CONN_CLIENT_ID_PREFIX = "mqtt.client_id_prefix";
 	public static final String CONN_CLIENT_ID_SUFFIX = "mqtt.client_id_suffix";
+	public static final String CONN_CLEAN_SESSION = "mqtt.clean_session";
 	
 	public static final String CONN_ELAPSED_TIME = "mqtt.conn_elapsed_time";
 	public static final String CONN_CLIENT_AUTH = "mqtt.conn_client_auth";
@@ -34,6 +35,7 @@ public interface Constants {
 	public static final String TOPIC_NAME = "mqtt.topic_name";
 	public static final String QOS_LEVEL = "mqtt.qos_level";
 	public static final String ADD_TIMESTAMP = "mqtt.add_timestamp";
+	public static final String RETAINED = "mqtt.retained";
 	public static final String PAYLOAD_SIZE = "mqtt.payload_size";
 	
 	public static final String SAMPLE_CONDITION_VALUE = "mqtt.sample_condition_value";
@@ -84,8 +86,10 @@ public interface Constants {
 	public static final String DEFAULT_SAMPLE_VALUE_ELAPSED_TIME_SEC = "1000";
 	
 	public static final boolean DEFAULT_ADD_TIMESTAMP = false;
+	public static final boolean DEFAULT_RETAINED = false;
 	public static final String DEFAULT_MESSAGE_FIX_LENGTH = "1024";
 	
 	public static final boolean DEFAULT_ADD_CLIENT_ID_SUFFIX = true;
+	public static final boolean DEFAULT_CLEAN_SESSION = true;
 	
 }

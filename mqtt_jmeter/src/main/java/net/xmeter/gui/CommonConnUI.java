@@ -52,6 +52,7 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 	
 	public final JLabeledTextField connNamePrefix = new JLabeledTextField("ClientId:", 8);
 	private JCheckBox connNameSuffix = new JCheckBox("Add random suffix for ClientId");
+	private JCheckBox connCleanSession = new JCheckBox("Clean session");
 	
 	private final JLabeledTextField connKeepAlive = new JLabeledTextField("Keep alive(s):", 4);
 	
@@ -87,6 +88,8 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 		optsPanel0.add(connNamePrefix);
 		optsPanel0.add(connNameSuffix);
 		connNameSuffix.setSelected(true);
+		optsPanel0.add(connCleanSession);
+		connCleanSession.setSelected(true);
 		optsPanelCon.add(optsPanel0);
 		
 		JPanel optsPanel1 = new HorizontalPanel();
@@ -266,6 +269,11 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 		} else {
 			connNameSuffix.setSelected(false);
 		}
+		if(sampler.isCleanSession() ) {
+			connCleanSession.setSelected(true);
+		} else {
+			connCleanSession.setSelected(false);
+		}
 		
 		connKeepAlive.setText(sampler.getConnKeepAlive());
 		connKeeptime.setText(sampler.getConnKeepTime());
@@ -296,6 +304,7 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 		
 		sampler.setConnPrefix(connNamePrefix.getText());
 		sampler.setClientIdSuffix(connNameSuffix.isSelected());
+		sampler.setCleanSession(connCleanSession.isSelected());
 		
 		sampler.setConnKeepAlive(connKeepAlive.getText());
 		sampler.setConnKeepTime(connKeeptime.getText());
@@ -329,6 +338,7 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 		
 		connNamePrefix.setText(DEFAULT_CONN_PREFIX_FOR_CONN);
 		connNameSuffix.setSelected(true);
+		connCleanSession.setSelected(true);
 		
 		connKeepAlive.setText(DEFAULT_CONN_KEEP_ALIVE);
 		connKeeptime.setText(DEFAULT_CONN_KEEP_TIME);

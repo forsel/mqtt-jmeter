@@ -169,6 +169,7 @@ public class SubSampler extends AbstractMQTTSampler implements ThreadListener {
 						clientId = getConnClientId();
 					}
 					mqtt.setClientId(clientId);
+					mqtt.setCleanSession(isCleanSession());
 		
 					mqtt.setConnectAttemptsMax(Integer.parseInt(getConnAttamptMax()));
 					mqtt.setReconnectAttemptsMax(Integer.parseInt(getConnReconnAttamptMax()));
